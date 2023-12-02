@@ -15,3 +15,4 @@ def maxConsecutiveAnswers(answerKey: str, k: int) -> int:
         max_consecutive = max(max_consecutive, right - left + 1)
 
     return max_consecutive
+
