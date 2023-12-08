@@ -1,10 +1,5 @@
 
 class Solution:
-    def maxPathSum(self, root):
-        self.max_sum = float('-inf')
-        self.helper(root)
-        return self.max_sum
-    
     def helper(self, node):
         if not node:
             return 0
