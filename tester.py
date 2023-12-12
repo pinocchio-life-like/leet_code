@@ -1,31 +1,28 @@
-# def test(n):
-#     if n == 5:
-#         return "Five "
-#     else:
-#         left = test(n-1)
-#         return left + "Test "
+def search(nums, target):
+    left, right = 0, len(nums) - 1
 
+    while left <= right:
+        mid = (left + right) // 2
 
-# print(test(10))
-haystack = "haystack"
-stack = "stack"
-print(haystack.index(stack))
+        if nums[mid] == target:
+            return mid
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+        if nums[left] <= nums[mid]:
+            if nums[left] <= target <= nums[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        else:
+            if nums[mid] <= target <= nums[right]:
+                left = mid + 1
+            else:
+                right = mid - 1
 
-class Solution:
-    def inorderTraversal(self, root: TreeNode) -> List[int]:
-        result = []
-        self.inorderHelper(root, result)
-        return result
-    
-    def inorderHelper(self, node: TreeNode, result: List[int]):
-        if node:
-            self.inorderHelper(node.left, result)
-            result.append(node.val)
-            self.inorderHelper(node.right, result)
+    return -1
+
+# Test the function
+nums = [4, 5, 6, 7, 0, 1, 2]
+target = 0
+print(search(nums, target))
+            
+            
