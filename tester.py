@@ -1,28 +1,28 @@
-def search(nums, target):
-    left, right = 0, len(nums) - 1
+def numSpecial(mat):
+    rows = len(mat)
+    cols = len(mat[0])
+    row_count = [0] * rows
+    col_count = [0] * cols
 
-    while left <= right:
-        mid = (left + right) // 2
+    # Count the number of 1s in each row and column
+    for i in range(rows):
+        for j in range(cols):
+            if mat[i][j] == 1:
+                row_count[i] += 1
+                col_count[j] += 1
 
-        if nums[mid] == target:
-            return mid
+    special_count = 0
 
-        if nums[left] <= nums[mid]:
-            if nums[left] <= target <= nums[mid]:
-                right = mid - 1
-            else:
-                left = mid + 1
-        else:
-            if nums[mid] <= target <= nums[right]:
-                left = mid + 1
-            else:
-                right = mid - 1
+    # Check if each 1 is the only one in its row and column
+    for i in range(rows):
+        for j in range(cols):
+            if mat[i][j] == 1 and row_count[i] == 1 and col_count[j] == 1:
+                special_count += 1
 
-    return -1
+    return special_count
 
 # Test the function
-nums = [4, 5, 6, 7, 0, 1, 2]
-target = 0
-print(search(nums, target))
+matrix = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+print(numSpecial(matrix))
             
             
