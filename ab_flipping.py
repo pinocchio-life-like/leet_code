@@ -1,16 +1,18 @@
-def max_operations(s):
-    counter = 0
-    result = 0
-    for ch in s:
-        if ch == 'A':
-            counter += 1
-        elif ch == 'B' and counter > 0:
-            result += 1
-            counter -= 1
-    return result
+def max_operations(t, test_cases):
+    results = []
+    for i in range(t):
+        n = test_cases[i][0]
+        s = test_cases[i][1]
+        count = 0
+        for j in range(n-1):
+            if s[j] == 'A' and s[j+1] == 'B':
+                count += 1
+                s = s[:j] + 'BA' + s[j+2:]
+        results.append(count)
+    return results
 
-t = int(input().strip())
-for _ in range(t):
-    n = int(input().strip())
-    s = input().strip()
-    print(max_operations(s))
+# Example usage
+t = 3
+test_cases = [(2, 'AB'), (4, 'BBBA'), (4, 'AABB')]
+output = max_operations(t, test_cases)
+print(output)
