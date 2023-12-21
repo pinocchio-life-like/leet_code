@@ -15,5 +15,4 @@ def jump(nums):
             curr_end = curr_max
 
         curr_max = max(curr_max, i + nums[i])
-
     return jumps
