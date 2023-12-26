@@ -42,3 +42,12 @@ def isBalanced(self, root):
         return max(left_height, right_height) + 1
     
     return check_height(root) != -1
+
+def hasPathSum(root, targetSum):
+    if not root:
+        return False
+    
+    if not root.left and not root.right:
+        return root.val == targetSum
+    
+    return hasPathSum(root.left, targetSum - root.val) or hasPathSum(root.right, targetSum - root.val)
