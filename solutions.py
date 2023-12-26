@@ -268,3 +268,46 @@ def combinationSum(candidates, target):
     backtrack(target, [], 0)
     return result
 
+def combinationSum2(candidates, target):
+    def backtrack(remain, comb, start):
+        if remain == 0:
+            result.append(list(comb))
+            return
+        elif remain < 0:
+            return
+        for i in range(start, len(candidates)):
+            if i > start and candidates[i] == candidates[i - 1]:
+                continue
+            comb.append(candidates[i])
+            backtrack(remain - candidates[i], comb, i + 1)
+            comb.pop()
+
+    candidates.sort()
+    result = []
+    backtrack(target, [], 0)
+    return result
+
+import heapq
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+def mergeKLists(lists):
+    head = point = ListNode(0)
+    q = []
+
+    for l in lists:
+        if l:
+            heapq.heappush(q, (l.val, l))
+
+    while len(q) > 0:
+        val, node = heapq.heappop(q)
+        point.next = ListNode(val)
+        point = point.next
+        node = node.next
+        if node:
+            heapq.heappush(q, (node.val, node))
+
+    return head.next
