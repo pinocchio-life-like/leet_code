@@ -51,3 +51,5 @@ def hasPathSum(root, targetSum):
         return root.val == targetSum
     
     return hasPathSum(root.left, targetSum - root.val) or hasPathSum(root.right, targetSum - root.val)
+
+
