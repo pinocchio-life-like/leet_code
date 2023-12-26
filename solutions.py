@@ -233,3 +233,21 @@ def isValidSudoku(board):
                 if rows[i][num] > 1 or columns[j][num] > 1 or boxes[box_index][num] > 1:
                     return False
     return True
+
+def countAndSay(n):
+    if n == 1:
+        return "1"
+
+    prev = countAndSay(n - 1)
+    result = ""
+    i = 0
+
+    while i < len(prev):
+        count = 1
+        while i + 1 < len(prev) and prev[i] == prev[i + 1]:
+            i += 1
+            count += 1
+        result += str(count) + prev[i]
+        i += 1
+
+    return result
