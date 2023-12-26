@@ -69,3 +69,10 @@ def generate(numRows):
         triangle.append(row)
 
     return triangle
+
+
+def getRow(rowIndex):
+    row = [1]
+    for _ in range(rowIndex):
+        row = [x + y for x, y in zip([0]+row, row+[0])]
+    return row
