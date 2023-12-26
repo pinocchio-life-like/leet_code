@@ -376,3 +376,4 @@ class FoodRatings:
         while self.cuisine_foods[cuisine] and self.cuisine_foods[cuisine][0][0] != self.food_ratings[self.cuisine_foods[cuisine][0][1]]:
             heapq.heappop(self.cuisine_foods[cuisine])
         return self.cuisine_foods[cuisine][0][1]
+    
