@@ -76,3 +76,15 @@ def getRow(rowIndex):
     for _ in range(rowIndex):
         row = [x + y for x, y in zip([0]+row, row+[0])]
     return row
+
+def maxProfit(prices):
+    min_price = float('inf')
+    max_profit = 0
+    for price in prices:
+        min_price = min(min_price, price)
+        max_profit = max(max_profit, price - min_price)
+    return max_profit
+
+def isPalindrome(s):
+    s = ''.join(e for e in s if e.isalnum()).lower()
+    return s == s[::-1]
