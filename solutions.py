@@ -139,3 +139,26 @@ def preorderTraversal(root):
 
     return output
 
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+def postorderTraversal(root):
+    if root is None:
+        return []
+
+    stack, output = [root, ], []
+
+    while stack:
+        root = stack.pop()
+        if root is not None:
+            output.insert(0, root.val)
+            if root.left is not None:
+                stack.append(root.left)
+            if root.right is not None:
+                stack.append(root.right)
+
+    return output
+
