@@ -89,3 +89,9 @@ def isPalindrome(s):
     s = ''.join(e for e in s if e.isalnum()).lower()
     return s == s[::-1]
 
+def singleNumber(nums):
+    result = 0
+    for num in nums:
+        result ^= num
+    return result
+
