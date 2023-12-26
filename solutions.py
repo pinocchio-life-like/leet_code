@@ -311,3 +311,21 @@ def mergeKLists(lists):
             heapq.heappush(q, (node.val, node))
 
     return head.next
+
+def transpose(matrix):
+    rows, cols = len(matrix), len(matrix[0])
+    transposed = [[0] * rows for _ in range(cols)]
+    for r in range(rows):
+        for c in range(cols):
+            transposed[c][r] = matrix[r][c]
+    return transposed
+
+from collections import Counter
+
+def findSpecialInteger(arr):
+    threshold = len(arr) // 4
+    counter = Counter(arr)
+    for num, count in counter.items():
+        if count > threshold:
+            return num
+    return -1
