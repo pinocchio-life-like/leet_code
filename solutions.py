@@ -329,3 +329,28 @@ def findSpecialInteger(arr):
         if count > threshold:
             return num
     return -1
+
+import heapq
+
+class FoodRatings:
+    def __init__(self, foods, cuisines, ratings):
+        self.food_ratings = {food: -rating for food, rating in zip(foods, ratings)}
+        self.cuisine_foods = {}
+        for food, cuisine in zip(foods, cuisines):
+            if cuisine not in self.cuisine_foods:
+                self.cuisine_foods[cuisine] = []
+            heapq.heappush(self.cuisine_foods[cuisine], (self.food_ratings[food], food))
+
+    def changeRating(self, food, newRating):
+        oldRating = self.food_ratings[food]
+        self.food_ratings[food] = -newRating
+        for cuisine in self.cuisine_foods:
+            if food in [f for _, f in self.cuisine_foods[cuisine]]:
+                self.cuisine_foods[cuisine].remove((oldRating, food))
+                heapq.heapify(self.cuisine_foods[cuisine])
+                heapq.heappush(self.cuisine_foods[cuisine], (self.food_ratings[food], food))
+
+    def highestRated(self, cuisine):
+        while self.cuisine_foods[cuisine] and self.cuisine_foods[cuisine][0][0] != self.food_ratings[self.cuisine_foods[cuisine][0][1]]:
+            heapq.heappop(self.cuisine_foods[cuisine])
+        return self.cuisine_foods[cuisine][0][1]
