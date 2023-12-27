@@ -377,3 +377,35 @@ class FoodRatings:
             heapq.heappop(self.cuisine_foods[cuisine])
         return self.cuisine_foods[cuisine][0][1]
     
+    
+#Minimum Time to Make Rope Colorful  
+class Solution(object):
+    def minCost(self, colors, neededTime):
+        """
+        :type colors: str
+        :type neededTime: List[int]
+        :rtype: int
+        """
+        if len(colors) == 0 or len(colors) == 1:
+                return 0
+
+        time_count = 0
+        color = colors[:2]
+        time = neededTime[:2]
+
+        i=0
+        while len(color) > 1:
+            t1 = time[0]
+            t2 = time[1]
+            if color[0] == color[1]:
+                if t1<t2:
+                    time_count += t1
+                else:
+                    neededTime[i+1] = t1
+                    time_count += t2
+                        
+            i+=1
+
+            color = colors[i:i+2]
+            time = neededTime[i:i+2]
+        return time_count
