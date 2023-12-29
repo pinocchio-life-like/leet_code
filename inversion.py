@@ -60,3 +60,4 @@ for _ in range(t):
     # Calculate and print the number of inversions
     inversions = count_inversions(n, k, p, q)
     print(inversions)
+
