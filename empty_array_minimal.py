@@ -1,10 +1,6 @@
 from collections import Counter
 
 def minOperations(self, nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
     num_dict = Counter(nums)
     count = 0
     for num in nums:
