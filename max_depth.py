@@ -4,7 +4,6 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
-        
 
 def maxDepth(root):
     if root is None:
